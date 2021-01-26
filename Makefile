@@ -7,7 +7,7 @@ DOCKER_IMAGE_TAG ?= $(shell echo $(CURRENT_GIT_REF) | sed 's/\//-/' )
 DOCKER_IMAGE_NAME_TO_TEST ?= $(DOCKERHUB_USERNAME)/$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 ASCIIDOCTOR_VERSION ?= 2.0.12
 ASCIIDOCTOR_CONFLUENCE_VERSION ?= 0.0.2
-ASCIIDOCTOR_PDF_VERSION ?= 1.5.3
+ASCIIDOCTOR_PDF_VERSION ?= 1.5.4
 ASCIIDOCTOR_DIAGRAM_VERSION ?= 2.0.5
 ASCIIDOCTOR_EPUB3_VERSION ?= 1.5.0.alpha.19
 ASCIIDOCTOR_MATHEMATICAL_VERSION ?= 0.3.4
@@ -31,6 +31,7 @@ all: build test README.md
 
 build:
 	docker build \
+		--platform=amd64 \
 		--tag="$(DOCKER_IMAGE_NAME_TO_TEST)" \
 		--file=Dockerfile \
 		$(CURDIR)/
@@ -64,7 +65,7 @@ cache:
 
 cache/pandoc-$(PANDOC_VERSION)-linux.tar.gz: cache
 	curl -sSL -o "$(CURDIR)/cache/pandoc-$(PANDOC_VERSION)-linux.tar.gz" \
-	 	https://github.com/jgm/pandoc/releases/download/$(PANDOC_VERSION)/pandoc-$(PANDOC_VERSION)-linux-amd64.tar.gz
+		https://github.com/jgm/pandoc/releases/download/$(PANDOC_VERSION)/pandoc-$(PANDOC_VERSION)-linux-amd64.tar.gz
 
 cache/pandoc-$(PANDOC_VERSION)/bin/pandoc: cache/pandoc-$(PANDOC_VERSION)-linux.tar.gz
 	tar xzf "$(CURDIR)/cache/pandoc-$(PANDOC_VERSION)-linux.tar.gz" -C "$(CURDIR)/cache"

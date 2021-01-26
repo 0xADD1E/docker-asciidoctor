@@ -8,7 +8,7 @@ This Docker image provides:
 
 -   [Asciidoctor Diagram](https://asciidoctor.org/docs/asciidoctor-diagram/) 2.0.5 with ERD and Graphviz integration (supports plantuml and graphiz diagrams)
 
--   [Asciidoctor PDF](https://asciidoctor.org/docs/asciidoctor-pdf/) 1.5.3
+-   [Asciidoctor PDF](https://asciidoctor.org/docs/asciidoctor-pdf/) 1.5.4
 
 -   [Asciidoctor EPUB3](https://asciidoctor.org/docs/asciidoctor-epub3/) 1.5.0.alpha.19
 
@@ -32,7 +32,7 @@ Just run:
 
     docker run -it -v <your directory>:/documents/ asciidoctor/docker-asciidoctor
 
-Docker maps your directory with */documents* directory in the container.
+Docker maps your directory with _/documents_ directory in the container.
 
 After you start the container, you can use Asciidoctor commands to convert AsciiDoc files that you created in the directory mentioned above.
 You can find several examples below.
